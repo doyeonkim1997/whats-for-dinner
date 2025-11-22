@@ -26,10 +26,10 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-100 flex items-start justify-center pt-8 sm:pt-20 p-4 font-sans">
-      <div className="max-w-md w-full flex flex-col items-center gap-3 sm:gap-5">
+      <div className="max-w-md w-full flex flex-col items-center gap-4">
         
         {/* Header Section */}
-        <div className="text-center space-y-1 sm:space-y-2">
+        <div className="text-center space-y-1 sm:space-y-2 mb-2">
           <div className="inline-block p-2 sm:p-3 rounded-2xl bg-white shadow-sm mb-1">
              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500 sm:w-8 sm:h-8">
                 <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
@@ -46,19 +46,35 @@ const App: React.FC = () => {
           </p>
         </div>
 
-        {/* Content Section */}
-        <div className="w-full transition-all duration-300 min-h-[240px] sm:min-h-[300px] flex items-center justify-center">
+        {/* Content Section - STRICT FIXED HEIGHT */}
+        <div className="w-full h-[380px] sm:h-[420px] relative">
           {loadingState === LoadingState.IDLE && (
-            <div className="text-center p-6 sm:p-8 bg-white/50 rounded-3xl border-2 border-slate-200 border-dashed w-full h-full flex flex-col items-center justify-center gap-3 text-slate-400">
-              <span className="text-3xl sm:text-4xl filter grayscale opacity-50">🍽️</span>
-              <p className="font-medium text-sm sm:text-base">버튼을 눌러<br/>메뉴를 추천받으세요!</p>
+            <div className="w-full h-full text-center p-6 sm:p-8 bg-white/50 rounded-3xl border-2 border-slate-200 border-dashed flex flex-col items-center justify-center gap-4 text-slate-400">
+              <span className="text-4xl sm:text-5xl filter grayscale opacity-50">🍽️</span>
+              <div className="space-y-1">
+                <p className="font-bold text-slate-500">아직 메뉴가 없어요</p>
+                <p className="text-xs sm:text-sm">아래 버튼을 눌러주세요!</p>
+              </div>
             </div>
           )}
 
           {loadingState === LoadingState.LOADING && (
-            <div className="flex flex-col items-center gap-4 animate-pulse w-full">
-               <div className="w-full h-60 sm:h-72 bg-slate-200 rounded-3xl"></div>
-               <div className="w-2/3 h-4 bg-slate-200 rounded"></div>
+            <div className="w-full h-full bg-white rounded-3xl p-8 border border-blue-50 shadow-sm flex flex-col animate-pulse">
+               <div className="flex justify-between w-full mb-8">
+                 <div className="h-6 w-16 bg-slate-100 rounded-full"></div>
+                 <div className="h-4 w-20 bg-slate-100 rounded"></div>
+               </div>
+               <div className="flex-grow flex flex-col justify-center items-center gap-4">
+                 <div className="h-12 w-3/4 bg-slate-100 rounded-lg"></div>
+                 <div className="h-1 w-12 bg-slate-100 rounded-full"></div>
+                 <div className="h-4 w-full bg-slate-100 rounded"></div>
+                 <div className="h-4 w-2/3 bg-slate-100 rounded"></div>
+               </div>
+               <div className="flex justify-center gap-2 mt-auto pt-6">
+                 <div className="h-8 w-16 bg-slate-100 rounded-lg"></div>
+                 <div className="h-8 w-16 bg-slate-100 rounded-lg"></div>
+                 <div className="h-8 w-16 bg-slate-100 rounded-lg"></div>
+               </div>
             </div>
           )}
 
@@ -67,24 +83,29 @@ const App: React.FC = () => {
           )}
 
           {loadingState === LoadingState.ERROR && (
-            <div className="text-center p-6 sm:p-8 w-full bg-red-50 rounded-3xl border border-red-100 text-red-500">
-              <p className="font-bold mb-1 text-sm sm:text-base">잠시만 기다려주세요!</p>
-              <p className="text-xs sm:text-sm leading-relaxed">
-                현재 이용자가 많아 응답이 지연되고 있어요.<br/>
-                잠시 후 다시 버튼을 눌러주세요. 💦
+            <div className="w-full h-full flex flex-col items-center justify-center text-center p-6 sm:p-8 bg-red-50 rounded-3xl border border-red-100 text-red-500">
+              <div className="bg-red-100 p-3 rounded-full mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <p className="font-bold mb-2 text-lg">잠시만 기다려주세요!</p>
+              <p className="text-sm leading-relaxed opacity-80">
+                이용자가 많아 연결이 지연되고 있어요.<br/>
+                잠시 후 다시 시도해주세요.
               </p>
             </div>
           )}
         </div>
 
         {/* Action Section */}
-        <div className="w-full mt-1 sm:mt-2">
+        <div className="w-full mt-2">
           <SpinButton 
             onClick={handleSpin} 
             isLoading={loadingState === LoadingState.LOADING}
             hasData={loadingState === LoadingState.SUCCESS}
           />
-          <p className="text-center text-[10px] sm:text-xs text-slate-400 mt-3">
+          <p className="text-center text-[10px] sm:text-xs text-slate-400 mt-4">
              Powered by Google Gemini
           </p>
         </div>
@@ -103,7 +124,7 @@ const App: React.FC = () => {
         @keyframes fade-in-up {
             0% {
                 opacity: 0;
-                transform: translateY(20px) scale(0.95);
+                transform: translateY(10px) scale(0.98);
             }
             100% {
                 opacity: 1;
@@ -111,7 +132,7 @@ const App: React.FC = () => {
             }
         }
         .animate-fade-in-up {
-            animation: fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: fade-in-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
       `}</style>
     </div>

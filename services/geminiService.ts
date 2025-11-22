@@ -70,7 +70,7 @@ const getLocalRecommendation = async (): Promise<DinnerRecommendation> => {
     
     Return the result in JSON format with the following fields:
     - name: "${selectedMenuName}" (Keep this name).
-    - description: A short, mouth-watering description in Korean (1 sentence).
+    - description: A short, mouth-watering description in Korean. **End with a noun form (명사형 종결), NOT a full sentence like '입니다'.** (e.g. '얼큰하고 시원한 국물 맛', '바삭한 식감의 튀김', '매콤달콤한 밥도둑').
     - category: The specific type of cuisine (e.g., 한식, 중식, 양식, 분식, 야식, etc.).
     - calories: Approximate calories (e.g., "약 500kcal").
     - tags: A list of 2-3 short, descriptive keywords (adjectives or nouns) in Korean describing the taste, texture, or feeling (e.g., "얼큰함", "쫄깃함", "바삭바삭", "단짠", "해장용").
