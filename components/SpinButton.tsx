@@ -31,7 +31,7 @@ export const SpinButton: React.FC<SpinButtonProps> = ({ onClick, isLoading, hasD
             메뉴 고르는 중...
           </>
         ) : (
-          hasData ? '다시 추첨하기' : '저녁 메뉴 추첨 시작'
+          '추첨 시작'
         )}
       </span>
       

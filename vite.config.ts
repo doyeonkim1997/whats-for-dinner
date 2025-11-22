@@ -4,14 +4,14 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   // Load env file based on `mode` in the current working directory.
-  // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
-  const env = loadEnv(mode, '.', '');
+  const env = loadEnv(mode, (process as any).cwd(), '');
 
   return {
     plugins: [react()],
     define: {
-      // Expose the API_KEY to the client-side code safely
-      'process.env.API_KEY': JSON.stringify(env.API_KEY),
+      // Only expose API_KEY in development mode for local fallback.
+      // In production, this will be undefined, ensuring security.
+      'process.env.API_KEY': mode === 'development' ? JSON.stringify(env.API_KEY) : undefined,
     },
   };
 });
