@@ -1,0 +1,5 @@
+{
+  "name": "저녁 메뉴 추천기 (Dinner Roulette)",
+  "description": "AI-powered dinner menu randomizer focusing on popular dishes in Korea.",
+  "requestFramePermissions": []
+}
