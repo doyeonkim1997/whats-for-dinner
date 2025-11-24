@@ -40,21 +40,17 @@ const App: React.FC = () => {
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight">
             오늘 뭐 먹지?
           </h1>
-          <p className="text-slate-500 text-xs sm:text-sm">
-            고민하지 말고 버튼 하나로<br/>
-            오늘 저녁 메뉴를 결정해보세요.
+          <p className="text-slate-500 text-base sm:text-lg font-medium mt-1">
+            고민하지 말고 버튼 하나로 오늘 저녁 메뉴를 결정해보세요.
           </p>
         </div>
 
         {/* Content Section - STRICT FIXED HEIGHT */}
         <div className="w-full h-[380px] sm:h-[420px] relative">
           {loadingState === LoadingState.IDLE && (
-            <div className="w-full h-full text-center p-6 sm:p-8 bg-white/50 rounded-3xl border-2 border-slate-200 border-dashed flex flex-col items-center justify-center gap-4 text-slate-400">
-              <span className="text-4xl sm:text-5xl filter grayscale opacity-50">🍽️</span>
-              <div className="space-y-1">
-                <p className="font-bold text-slate-500">아직 메뉴가 없어요</p>
-                <p className="text-xs sm:text-sm">아래 버튼을 눌러주세요!</p>
-              </div>
+            <div className="w-full h-full text-center p-6 sm:p-8 bg-white/50 rounded-3xl border-2 border-slate-200 border-dashed flex flex-col items-center justify-center gap-6 text-slate-400">
+              <span className="text-5xl sm:text-6xl filter grayscale opacity-50">🍽️</span>
+              <p className="text-lg sm:text-xl font-bold text-slate-400">아래 버튼을 눌러주세요!</p>
             </div>
           )}
 
@@ -105,9 +101,6 @@ const App: React.FC = () => {
             isLoading={loadingState === LoadingState.LOADING}
             hasData={loadingState === LoadingState.SUCCESS}
           />
-          <p className="text-center text-[10px] sm:text-xs text-slate-400 mt-4">
-             Powered by Google Gemini
-          </p>
         </div>
 
       </div>
